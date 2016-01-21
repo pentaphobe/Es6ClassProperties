@@ -14,7 +14,49 @@ It seems sad given how much more power we have in the modernised object-literal 
 
 It's quite restrictive, moreso than the pseudo-OO libraries of ES5 days.
 
+## Current State
+
+Taken from mocha test results:
+
+    ✓ should allow basic data holding classes and methods
+    ✓ should allow defining a constructor in the props object
+    ✓ should allow super() from the es6 constructor
+    ✓ should allow super from es6 methods
+    ✓ should support getters
+    ✓ should support dynamic properties (unlike es6 class)
+    ✓ should allow easy declaration of lambda methods
+
+### To Do
+
+[ ] experiment with nicer syntax
+[ ] provide a few optional wrappers
+[ ] provide an `eval`-based version with a little more sugar (and never use it)
+[ ] write better examples
+
 ## eg.
+
+### Current syntax
+
+```js
+// First iteration is just wrapping an object literal in a function constructor
+// so that it can act as the superclass for a proper es6 class
+class Something extends props({
+    salutation:'',
+    name:'Mr. Deltoid',
+    constructor(salutation) {
+        // only initialisation requiring dynamic data goes here
+        this.salutation = salutation;
+    },
+
+    sayHello() { 
+        console.log(`${this.salutation} Alex, I am ${this.name}`);
+    }
+}){
+    // this is where the actual es6 class definition is, 
+    // can often be left completely empty - but you can use it as
+    // expected (see `/tests/test.js`)
+}
+```
 
 ### How I'd like it to look:
 ```js

@@ -98,6 +98,28 @@ describe('props function', function() {
 		expect(t).to.have.property('PROP_BERMUDA').which.equals('disappearance');
 	});
 
+	it('should allow easy declaration of lambda methods', function() {
+		// es6 lambdas are clunky (try googling for people having difficulties)
+		// 
+		// NB: this is a very contrived example, and really only demonstrates how
+		// _not_ to use this, but the point is it's easier to do :)
+
+		// outer scope name
+		this.name = 'fred';
+
+		class Test extends props({
+			// inner scope name
+			name: 'bob',
+			// this method accesses the _outer_ scope's values
+			isNamedBlock: name => { return name === this.name; },
+			isNamedShort: name => name === this.name,
+		}){}
+
+		var t = new Test();				
+		expect(t.isNamedBlock('fred')).to.equal(true);
+		expect(t.isNamedShort('fred')).to.equal(true);
+	});
+
 	// it('should allow multiple object arguments as mixins (for some reason)', function() {
 	// 	// pretty sure nobody's ever going to use this, but small addition to the `props()` function anyway
 		

@@ -28,10 +28,10 @@ Taken from mocha test results:
 
 ### To Do
 
-[ ] experiment with nicer syntax
-[ ] provide a few optional wrappers
-[ ] provide an `eval`-based version with a little more sugar (and never use it)
-[ ] write better examples
+- [ ] experiment with nicer syntax
+- [ ] provide a few optional wrappers
+- [ ] provide an `eval`-based version with a little more sugar (and never use it)
+- [ ] write better examples
 
 ## eg.
 

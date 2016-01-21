@@ -1,0 +1,22 @@
+{
+  "name": "es6_class_properties",
+  "version": "1.0.0",
+  "description": "A hacky method to allow property definitions in Es6 classes rather than having to declare them in the constructor",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha tests/test"
+  },
+  "keywords": [
+    "es6",
+    "javascript",
+    "ecmascript",
+    "classes",
+    "properties"
+  ],
+  "author": "pentaphobe <pentaphobe@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  }
+}

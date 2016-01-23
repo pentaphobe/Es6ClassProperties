@@ -16,7 +16,15 @@ function props(obj) {
 	return props_constructor;
 }
 
+// don't use this - it's bad form
+function clazz(name, obj) {
+	var template = `class ${name} extends props(obj) {}`;
+	var fn = eval(template);
+	return fn;
+}
+
 module.exports = {
-	props
+	props,
+	clazz
 };
 

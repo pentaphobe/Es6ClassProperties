@@ -5,7 +5,8 @@ var expect = chai.expect;
 var es6props = require('../src/es6props');
 
 describe('props function', function() {
-	var props = es6props.props;
+	var props = es6props.props,
+		clazz = es6props.clazz;
 
 	it('should allow basic data holding classes and methods', function() {
 		const NAME = 'Gerald';
@@ -119,6 +120,38 @@ describe('props function', function() {
 		expect(t.isNamedBlock('fred')).to.equal(true);
 		expect(t.isNamedShort('fred')).to.equal(true);
 	});
+
+	it('should have properties as _instance_ properties', function() {
+		class Test extends props({
+			name: '',
+			constructor(name) {
+				this.name = name;
+			}
+		}){}
+
+		var t1 = new Test('first'),
+			t2 = new Test('second');
+
+		expect(t1.name).not.to.equal(t2.name);
+	});
+
+	it('should allow foolish usage of eval for convenience', function() {
+
+		/**
+		 * A little less weird, but requires eval so it can bugger right off
+		 * That said, perhaps the elimination of the dangling {} is nicer for some
+		 * maybe someone can think of a more clever way of doing this?
+		 */
+		var Test = clazz('Test', {
+			name: '',
+			constructor(name) { this.name = name; }
+		});
+
+		var t = new Test('hello');
+		expect(t).to.have.property('name').which.equals('hello');
+
+	});
+
 
 	// it('should allow multiple object arguments as mixins (for some reason)', function() {
 	// 	// pretty sure nobody's ever going to use this, but small addition to the `props()` function anyway
